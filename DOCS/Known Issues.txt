@@ -1,0 +1,6 @@
+
+EtherYatri.NET Known Issues:
+1. An agent on a host cannot move to the same host. MoveAgent and Execute are both
+   mutually exclusive in time. As a result, when Execute is called, the agent-host 
+   enters a deadlock.
+

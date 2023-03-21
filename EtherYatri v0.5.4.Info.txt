@@ -1,0 +1,16 @@
+1. IAgentContext now provides thread-safe members 
+
+	void SetProperty(object key, object value);
+	object GetProperty(object key);
+
+    to modify the properties collection. This provides another means for agents to
+    communicate with each other. 
+	[7:52 PM 7/21/2003 - Siddharth (siddharthuppal@yahoo.co.in)]
+
+2. Agent class has a public property called Proxy that an agent can use to obtain its own proxy.
+
+3. WINAH now supports Windows XP themes.
+
+4. Added a public string property Agent.AssemblyPath to provide the client code an easy way to find out the path of the agent's assembly required in the IAgentContext.CreateAgent call.
+
+5. Allows the writing of mobile-agents in Visual Basic through Visual Studio.NET.

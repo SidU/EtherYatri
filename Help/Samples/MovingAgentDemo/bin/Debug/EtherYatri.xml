@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EtherYatri</name>
+    </assembly>
+    <members>
+        <member name="T:EtherYatri.Agent">
+            <summary>
+            To create their own agents, clients must inherit from Agent class and
+            override atleast its Run method. Additionally, if the agent would be moving
+            from one host to another, it must be marked with Serializable attribute.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.Agent.agentManager">
+            <summary>
+            A reference to the agent mananager who controls this agent.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.Agent.id">
+            <summary>
+            The unique id associated with this agent.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.Agent.Run">
+            <summary>
+            An Agent does its main work in Run method. Run is called on every host
+            where the agent begins its execution.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.Agent.OnCreation(System.Object)">
+            <summary>
+            OnCreation is fired when this Agent is created. OnCreation is fired only
+            once during the entire lifetime of the agent.
+            </summary>
+            <param name="init">You can use init to initialize your agent</param>
+        </member>
+        <member name="M:EtherYatri.Agent.OnStopping">
+            <summary>
+            OnStopping is fired when this Agent is stopped. OnStopping is fired
+            if the agent is asked to terminate by its proxy.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.Agent.OnArrival">
+            <summary>
+            Fired when the agent reaches a new host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.Agent.OnMigration(System.String)">
+            <summary>
+            Fired just before the agent moves to another host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.Agent.MoveTo(System.String)">
+            <summary>
+            Moves this Agent to another host.
+            </summary>
+            <param name="address">the url of the host where migration is desired</param>
+        </member>
+        <member name="M:EtherYatri.Agent.Initialize(EtherYatri.InternalSystem.AgentManager)">
+            <summary>
+            Used by EtherYatri.NET Framework to internally initialize the Agent
+            </summary>
+            <param name="agentManager"></param>
+        </member>
+        <member name="P:EtherYatri.Agent.Id">
+            <summary>
+            The globally unique id associated with this agent.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.Agent.AgentContext">
+            <summary>
+            The Agent's context.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.Agent.Proxy">
+            <summary>
+            A proxy to the agent.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.Agent.AssemblyPath">
+            <summary>
+            Path of the assembly containing the agent's code.
+            </summary>
+        </member>
+        <member name="T:EtherYatri.AgentBinder">
+            <summary>
+            During deserialization AgentBinder binds the agent-type to the actual
+            user defined type of the agent.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.AgentBinder.BindToType(System.String,System.String)">
+            <summary>
+            An object implementing IFormatter calls this method during
+            deserialization. We load and return the agent's type from
+            the appropriate assembly.
+            </summary>
+            <param name="assemblyName">strong name of agent's assembly</param>
+            <param name="typeName">full typename of the agent</param>
+            <returns></returns>
+        </member>
+        <member name="T:EtherYatri.AgentId">
+            <summary>
+            Encapsulates an Agent's globally unique identifier. 
+            </summary>
+        </member>
+        <member name="F:EtherYatri.AgentId.guid">
+            <summary>
+            Reference to a Guid object.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.AgentId.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.AgentId.GetHashCode">
+            <summary>
+            Returns hash code of this AgentId object. This is needed since the
+            users of this class would keep AgentId objects in a dictionary.
+            </summary>
+            <returns>hash code of this AgentId object.</returns>
+        </member>
+        <member name="M:EtherYatri.AgentId.Equals(System.Object)">
+            <summary>
+            To check if this AgentId object is equal to another. Since users of this
+            class would be keeping AgentId objects in a dictionary, this method would
+            be invoked by dictionary class to check if two AgentId objects are equal.
+            </summary>
+            <param name="obj">the AgentId object to be compared to.</param>
+            <returns>true if the two are equal, false otherwise.</returns>
+        </member>
+        <member name="M:EtherYatri.AgentId.ToString">
+            <summary>
+            AgentId stringized.
+            </summary>
+            <returns>AgentId object stringized.</returns>
+        </member>
+        <member name="P:EtherYatri.AgentId.Id">
+            <summary>
+            The Guid object associated with this AgentId object.
+            </summary>
+        </member>
+        <member name="T:EtherYatri.InternalSystem.AgentManager">
+            <summary>
+            Every agent is associated with an Agent Manager, and vice-versa. 
+            </summary>
+        </member>
+        <member name="F:EtherYatri.InternalSystem.AgentManager.receivedAgentAssembliesDir">
+            <summary>
+            The path of the directory where received agent code is stored.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.InternalSystem.AgentManager.agentThread">
+            <summary>
+            Every agent runs in a separate thread.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.InternalSystem.AgentManager.agent">
+            <summary>
+            A reference to the managed agent.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.#ctor(EtherYatri.IAgentHost,System.String,System.Byte[],System.Byte[],System.String,EtherYatri.AgentId)">
+            <summary>
+            Manages an agent received from a remote host.
+            </summary>
+            <param name="agentHost">A reference to the local agent host on which the agent will execute</param>
+            <param name="receivedAgentAssembliesDir">Path of directory where the received code of the agent will be stored in a file</param>
+            <param name="agentAssemblyBytes">The bytes of the assembly containing the agent's type</param>
+            <param name="agentState">The bytes of the serialized representation of the state of the agent</param>
+            <param name="agentTypeName">The name of the agent's type in the assembly</param>
+            <param name="agentId">The id of the agent</param>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.ExecuteAgent">
+            <summary>
+            Is called on agent's thread. This is where the agent spends
+            its entire lifetime.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.CleanupAtEndOfAgentExecution">
+            <summary>
+            AgentHost calls us to perform cleanup.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.#ctor(EtherYatri.IAgentHost,System.String,System.String,System.Object)">
+            <summary>
+            Used to manage an agent whose code is already available on local host.
+            </summary>
+            <param name="agentHost">A reference to the local host</param>
+            <param name="agentAssemblyPath">The path of the assembly file containing agent type's code</param>
+            <param name="agentTypeName">The name of the agent's type in the assembly</param>
+            <param name="init">Used to pass initialization information to the agent</param>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.MoveTo(System.String)">
+            <summary>
+            Used to move an agent from the local host to a remote host.
+            </summary>
+            <param name="destinationAddress">address of destination host</param>
+        </member>
+        <member name="F:EtherYatri.InternalSystem.AgentManager.agentId">
+            <summary>
+            The id of the managed agent.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.InternalSystem.AgentManager.agentHost">
+            <summary>
+            A reference to the local host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.GetContext">
+            <summary>
+            Returns the AgentContext of the agent.
+            </summary>
+            <returns>AgentContext of the agent</returns>
+        </member>
+        <member name="M:EtherYatri.InternalSystem.AgentManager.GetAgent">
+            <summary>
+            Used to get a reference to the managed agent.
+            </summary>
+            <returns>A reference to the managed agent</returns>
+        </member>
+        <member name="P:EtherYatri.InternalSystem.AgentManager.Id">
+            <summary>
+            The id of the managed agent.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.InternalSystem.AgentManager.AgentState">
+            <summary>
+            The agent's state.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.InternalSystem.AgentManager.AgentCode">
+            <summary>
+            The agent's code.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.AgentNotFoundException.#ctor(System.String)">
+            <summary>
+            Creates an instance of AgentNotFound exception with the
+            specified error-message.
+            </summary>
+            <param name="message">error-message</param>
+        </member>
+        <member name="T:EtherYatri.AgentProxy">
+            <summary>
+            AgentProxy is like a handle for an agent that can be used to invoke methods
+            on it. AgentProxy allows client code to be written so that it can transparently
+            communicate with remote as well as local agents.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.AgentProxy.#ctor(System.String,EtherYatri.AgentId)">
+            <summary>
+            Creates an instance of AgentProxy.
+            </summary>
+            <param name="targetHostAddress">the url of the host where the referred agent is located</param>
+            <param name="agentId">the id of the referred agent</param>
+        </member>
+        <member name="M:EtherYatri.AgentProxy.MoveTo(System.String)">
+            <summary>
+            Moves the referred agent to another host from its current host.
+            </summary>
+            <param name="destinationAddress">the url of the host where migratio is desired</param>
+            <returns>a new proxy referring to the agent after it has migrated to the destination host</returns>
+        </member>
+        <member name="M:EtherYatri.AgentProxy.InvokeMethod(System.String,System.Object[])">
+            <summary>
+            Invokes the specified method on the referred agent.
+            </summary>
+            <param name="methodName">the name of the method to be invoked</param>
+            <param name="parameters">the paremeters that should be passed to the specified method</param>
+            <returns>returns whatever the method returns</returns>
+        </member>
+        <member name="M:EtherYatri.AgentProxy.Dispose">
+            <summary>
+            Causes the referred agent to be disposed off.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.AgentProxy.agentId">
+            <summary>
+            The id of the target agent.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.AgentProxy.targetHostAddress">
+            <summary>
+            The Url of the host where agent is located.
+            </summary>
+        </member>
+        <member name="F:EtherYatri.AgentProxy.localAgentHost">
+            <summary>
+            A reference to the local agent host.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.AgentProxy.TargetHostAddress">
+            <summary>
+            The Url of the host where agent is located.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.AgentProxy.IsValid">
+            <summary>
+            Determines whether the referred agent actually exists on the
+            target host.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.AgentProxy.LocalAgentHost">
+            <summary>
+            A reference to the local agent host.
+            </summary>
+        </member>
+        <member name="T:EtherYatri.AgentWebMethodAttribute">
+            <summary>
+            Clients must mark those methods of their agent class
+            which they wish to allow to be invoked by remote agents with 
+            this attribute.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.HostNotFoundException.#ctor(System.String)">
+            <summary>
+            Creates an instance of AgentNotFound exception with the
+            specified error-message.
+            </summary>
+            <param name="message">error-message</param>
+        </member>
+        <member name="T:EtherYatri.IAgentContext">
+            <summary>
+            Agent context is like a room wherein agents can meet each other. Every host
+            is associated with one agent context.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentContext.SetProperty(System.Object,System.Object)">
+            <summary>
+            Sets a property with the specified key and value in the properties
+            collection of the agent context. Make sure that the key implements
+            System.Object.GetHashCode method and System.Object.Equals appropriately. 
+            For example: the System.String class.
+            </summary>
+            <param name="key">the key of the property to add</param>
+            <param name="value">the value of the property</param>
+        </member>
+        <member name="M:EtherYatri.IAgentContext.GetProperty(System.Object)">
+            <summary>
+            Gets the value associated with the key, stored in the properties
+            collection of the agent context.
+            </summary>
+            <param name="key">the key of the property</param>
+            <returns>value associated with the key</returns>
+        </member>
+        <member name="M:EtherYatri.IAgentContext.CreateAgent(System.String,System.String,System.Object)">
+            <summary>
+            An agent can create a new agent on its host using this method.
+            </summary>
+        </member>
+        <member name="P:EtherYatri.IAgentContext.LocalHostAddress">
+            <summary>
+            The address of the local host.
+            </summary>
+        </member>
+        <member name="T:EtherYatri.IAgentHost">
+            <summary>
+            IAgentHost interface describes the methods which the EtherYatri.NET communication-layer must implement.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.Execute(System.Byte[],System.Byte[],System.String,EtherYatri.AgentId)">
+            <summary>
+            Execute is invoked by remote hosts to transfer an agent to the local host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.CreateAgent(System.String,System.String,System.Object)">
+            <summary>
+            CreateAgent is called by remote hosts to create a new agent on local host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.CreateAgentOnRemoteHost(System.String,System.String,System.String,System.Object)">
+            <summary>
+            CreateAgentOnRemoteHost is used to create a new agent on a remote host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.MoveAgent(System.String,EtherYatri.AgentId)">
+            <summary>
+            MoveAgent transfers the specified agent from the localhost to a remote host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.MoveAgentOnRemoteHost(System.String,System.String,EtherYatri.AgentId)">
+            <summary>
+            MoveAgentOnRemoteHost moves an agent located on a remote host to another remote host.
+            </summary>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.DisposeAgent(EtherYatri.AgentId)">
+            <summary>
+            Performs cleanup at the end of an agent's execution.
+            </summary>
+            <param name="agentId"></param>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.DisposeAgentAtRemoteHost(System.String,EtherYatri.AgentId)">
+            <summary>
+            Used to dispose an agent located at a remote host.
+            </summary>
+            <param name="agentId"></param>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.InvokeAgentMethod(EtherYatri.AgentId,System.String,System.Object[])">
+            <summary>
+            Used by remote hosts to invoke a method of an agent located at
+            the local host.
+            </summary>
+            <param name="agentId">the id of agent whose method is to be invoked</param>
+            <param name="methodName">the name of the method to be invoked</param>
+            <param name="parameters">the parameters to be passed while invoking the method</param>
+            <returns>returns whatever the method returns</returns>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.InvokeAgentMethodOnRemoteHost(System.String,EtherYatri.AgentId,System.String,System.Object[])">
+            <summary>
+            To invoke a method of an agent located at a remote host.
+            </summary>
+            <param name="remoteHostAddress">Url of the host where agent is located</param>
+            <param name="agentId">the id of the agent whose method is to be invoked</param>
+            <param name="methodName">the method to be invoked on the agent</param>
+            <param name="parameters">the parameters to be passed to the method while invoking it</param>
+            <returns>whatever the agent's method returns</returns>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.AgentExists(EtherYatri.AgentId)">
+            <summary>
+            Remote hosts call AgentExists to determine whether specified agent exists
+            on the local host.
+            </summary>
+            <param name="agentId">the id of the agent to be checked</param>
+            <returns>true if the specified agent exists, false otherwise</returns>
+        </member>
+        <member name="M:EtherYatri.IAgentHost.AgentExistsOnRemoteHost(System.String,EtherYatri.AgentId)">
+            <summary>
+            AgentExistsOnRemoteHost is used to check whether the specified agent 
+            exists at the specified host.
+            </summary>
+            <param name="remoteHostAddress">the url of the host where agent should be searched for</param>
+            <param name="agentId">the id of the agent to be searched for</param>
+            <returns>true if the specified agent exists at the specified host, false otherwise</returns>
+        </member>
+    </members>
+</doc>

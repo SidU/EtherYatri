@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>EtherYatri.Agent</TITLE>
+<LINK REL=STYLESHEET HREF="../CommentReport.css" TYPE="text/css">
+</HEAD>
+<BODY topmargin=0 rightmargin=0 leftmargin=0 style="background-image: url(../titletile.jpg); background-repeat:repeat-x; background-position: 0 0;" >
+<DIV CLASS="PageHeading">EtherYatri.Agent Class</DIV>
+<DIV CLASS="Description">
+
+To create their own agents, clients must inherit from Agent class and
+override atleast its Run method. Additionally, if the agent would be moving
+from one host to another, it must be marked with Serializable attribute.
+<P>
+
+</DIV>
+<IMG src="../GradLeft.jpg" width=7 height=378 alt="" border="0" style="position:absolute; left:10; top:18;z-Index:2">
+<IMG src="../GradTop.jpg" width=352 height=7 alt="" border="0" align="top" style="position:absolute; left:10; top:18; z-index:1">
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Access: </SPAN>Public</DIV>
+<DIV CLASS="Remarks">
+<SPAN CLASS="RemarkHdrX">Base Classes: </SPAN>Object</DIV>
+<TABLE CLASS="InfoTable" cellpadding=0 cellspacing=0>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD valign=top align=left width=9 bgcolor="#cccc66"><IMG SRC="../graycorner.jpg" align=top></TD>
+<TD CLASS="TableLightLabel" WIDTH=206>Members</TD>
+<TD CLASS="TableLightLabel" >Description</TD>
+<TD width=20>&nbsp;</TD>
+</TR>
+<TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP4.HTM" TARGET="CNTFRAME">agentManager</A></TD>
+<TD CLASS="TableLightDesc">
+A reference to the agent mananager who controls this agent.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP6.HTM" TARGET="CNTFRAME">id</A></TD>
+<TD CLASS="TableLightDesc">
+The unique id associated with this agent.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP8.HTM" TARGET="CNTFRAME">Run</A></TD>
+<TD CLASS="TableLightDesc">
+An Agent does its main work in Run method. Run is called on every host
+where the agent begins its execution.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP9.HTM" TARGET="CNTFRAME">OnCreation</A></TD>
+<TD CLASS="TableLightDesc">
+OnCreation is fired when this Agent is created. OnCreation is fired only
+once during the entire lifetime of the agent.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP10.HTM" TARGET="CNTFRAME">OnStopping</A></TD>
+<TD CLASS="TableLightDesc">
+OnStopping is fired when this Agent is stopped. OnStopping is fired
+if the agent is asked to terminate by its proxy.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP11.HTM" TARGET="CNTFRAME">OnArrival</A></TD>
+<TD CLASS="TableLightDesc">
+Fired when the agent reaches a new host.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP12.HTM" TARGET="CNTFRAME">OnMigration</A></TD>
+<TD CLASS="TableLightDesc">
+Fired just before the agent moves to another host.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP13.HTM" TARGET="CNTFRAME">MoveTo</A></TD>
+<TD CLASS="TableLightDesc">
+Moves this Agent to another host.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP14.HTM" TARGET="CNTFRAME">Initialize</A></TD>
+<TD CLASS="TableLightDesc">
+Used by EtherYatri.NET Framework to internally initialize the Agent
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP15.HTM" TARGET="CNTFRAME">Id</A></TD>
+<TD CLASS="TableLightDesc">
+The globally unique id associated with this agent.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP17.HTM" TARGET="CNTFRAME">AgentContext</A></TD>
+<TD CLASS="TableLightDesc">
+The Agent's context.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP20.HTM" TARGET="CNTFRAME">Proxy</A></TD>
+<TD CLASS="TableLightDesc">
+A proxy to the agent.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR><TR height=20>
+<TD width=20>&nbsp;</TD>
+<TD CLASS="TableLightDesc">&nbsp;</TD>
+<TD CLASS="TableLightDesc"><A HREF="CWP23.HTM" TARGET="CNTFRAME">AssemblyPath</A></TD>
+<TD CLASS="TableLightDesc">
+Path of the assembly containing the agent's code.
+<P>
+</TD>
+<TD width=20>&nbsp;</TD>
+</TR></TABLE>
+</BODY>
+</HTML>
